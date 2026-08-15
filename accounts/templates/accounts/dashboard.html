@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Dashboard</title>
+</head>
+<body>
+
+    <h1>Office Time Tracker</h1>
+
+    <h2>Welcome, {{ request.user.first_name|default:request.user.username }}</h2>
+
+    <hr>
+
+    <h3>Dashboard</h3>
+
+    <p>Date: <span id="current-date"></span></p>
+    <p>Time: <span id="current-time"></span></p>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+
+            document.getElementById("current-date").innerHTML =
+                now.toLocaleDateString();
+
+            document.getElementById("current-time").innerHTML =
+                now.toLocaleTimeString();
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+
+</body>
+</html>

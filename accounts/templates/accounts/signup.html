@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+</head>
+<body>
+
+    <h1>Office Time Tracker</h1>
+    <h2>Signup</h2>
+
+    <form method="POST">
+        {% csrf_token %}
+
+        <label>Username</label><br>
+        <input type="text" name="username"><br><br>
+
+        <label>Email</label><br>
+        <input type="email" name="email"><br><br>
+
+        <label>Password</label><br>
+        <input type="password" id="password" name="password">
+        <button type="button" onclick="togglePassword('password', this)">Show</button>
+        <br><br>
+
+        <label>Confirm Password</label><br>
+        <input type="password" id="confirm_password" name="confirm_password">
+        <button type="button" onclick="togglePassword('confirm_password', this)">Show</button>
+        <br><br>
+
+        <button type="submit">Register</button>
+    </form>
+    <br>
+    <p>
+        Already have an account?
+        <a href="{% url 'signin' %}">Signin</a>
+    </p>
+
+    {% if messages %}
+    {% for message in messages %}
+        <p style="color:red;">{{ message }}</p>
+    {% endfor %}
+{% endif %}
+
+<script>
+function togglePassword(fieldId, button) {
+    const field = document.getElementById(fieldId);
+
+    if (field.type === "password") {
+        field.type = "text";
+        button.textContent = "Hide";
+    } else {
+        field.type = "password";
+        button.textContent = "Show";
+    }
+}
+</script>
+
+</body>
+</html>

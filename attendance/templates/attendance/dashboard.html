@@ -1,0 +1,125 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Office Time Tracker</title>
+
+    <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+</head>
+<body>
+
+<div class="dashboard">
+
+    <!-- Header -->
+    <header class="header">
+
+        <div class="header-left">
+
+            <p id="today-date">
+                Thursday, July 30
+            </p>
+
+            <h1 id="greeting">
+                Good Morning
+            </h1>
+
+        </div>
+
+        <div class="header-right">
+
+            <span id="clock">
+                00:00
+            </span>
+
+        </div>
+
+    </header>
+
+    <!-- Timeline -->
+    <section class="timeline-card">
+
+    <div class="progress-line"></div>
+    <div class="progress-fill" id="progress-fill"></div>
+
+    <div class="timeline">
+
+        <div class="station">
+            <div class="circle active" id="entry-circle">
+                ➜
+            </div>
+
+            <h4>Entry</h4>
+            <small id="entry-time">--:--</small>
+        </div>
+
+        <div class="station">
+            <div class="circle" id="lunchout-circle">
+                ☕
+            </div>
+
+            <h4>Lunch Out</h4>
+            <small id="lunchout-time">--:--</small>
+        </div>
+
+        <div class="station">
+            <div class="circle" id="lunchin-circle">
+                🍴
+            </div>
+
+            <h4>Lunch In</h4>
+            <small id="lunchin-time">--:--</small>
+        </div>
+
+        <div class="station">
+            <div class="circle" id="exit-circle">
+                ⎋
+            </div>
+
+            <h4>Exit</h4>
+            <small id="exit-time">--:--</small>
+        </div>
+
+    </div>
+
+</section>
+
+    <!-- Worked Hours -->
+
+    <h3>Worked Hours</h3>
+
+    <h1 id="worked-hours">
+        0.00 hrs
+    </h1>
+
+    <p id="day-status">
+        Working...
+    </p>
+
+</section>
+
+<section class="button-grid">
+
+    <!-- Buttons -->
+<button type="button" id="entry-btn">Entry</button>
+<button type="button" id="lunchout-btn">Lunch Out</button>
+<button type="button" id="lunchin-btn">Lunch In</button>
+<button type="button" id="exit-btn">Exit</button>
+</section>
+
+    <footer>
+
+        <p id="next-step">
+
+            Next: Entry
+
+        </p>
+
+    </footer>
+
+</div>
+
+<script src="{% static 'js/dashboard.js' %}?v=2"></script>
+</body>
+</html>
