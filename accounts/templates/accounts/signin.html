@@ -1,46 +1,154 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Login | Office Time Tracker</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/signin.css' %}">
 </head>
+
 <body>
 
-    <h1>Office Time Tracker</h1>
-    <h2>Login</h2>
+    <div class="container">
 
-    <form method="POST">
-        {% csrf_token %}
+        <!-- Brand -->
+        <div class="brand">
 
-        <label>Email</label><br>
-        <input
-            type="email"
-            name="email"
-            placeholder="Enter your email"
-            required
-        ><br><br>
+            <div class="brand-icon">
+                <span>◷</span>
+            </div>
 
-        <label>Password</label><br>
-        <input
-            type="password"
-            name="password"
-            placeholder="Enter your password"
-            required
-        ><br><br>
+            <h1>Welcome back</h1>
 
-        <button type="submit">Login</button>
-    </form>
+            <p>Sign in to track today's hours</p>
 
-    <br>
+        </div>
 
-    <p>
-        Don't have an account?
-        <a href="{% url 'signup' %}">Sign Up</a>
-    </p>
 
-    {% if messages %}
-    {% for message in messages %}
-        <p style="color:red;">{{ message }}</p>
-    {% endfor %}
-{% endif %}
+        <!-- Login Card -->
+        <div class="login-card">
+
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="message">
+                        {{ message }}
+                    </div>
+                {% endfor %}
+            {% endif %}
+
+
+            <form method="POST">
+
+                {% csrf_token %}
+
+
+                <!-- Email -->
+                <div class="form-group">
+
+                    <label for="email">
+                        Email
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            ✉
+                        </span>
+
+                        <input
+                            id="email"
+                            type="email"
+                            name="email"
+                            placeholder="you@company.com"
+                            autocomplete="email"
+                            required
+                        >
+
+                    </div>
+
+                </div>
+
+
+                <!-- Password -->
+                <div class="form-group">
+
+                    <label for="password">
+                        Password
+                    </label>
+
+                    <div class="input-wrapper">
+
+                        <span class="input-icon">
+                            🔒
+                        </span>
+
+                        <input
+                            id="password"
+                            type="password"
+                            name="password"
+                            placeholder="••••••••"
+                            autocomplete="current-password"
+                            required
+                        >
+
+                        <button
+                            type="button"
+                            id="passwordToggle"
+                            class="password-toggle"
+                            aria-label="Show password"
+                        >
+                            👁
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- Forgot Password -->
+                <div class="forgot">
+                    <a href="#">
+                        Forgot password?
+                    </a>
+                </div>
+
+
+                <!-- Login Button -->
+                <button
+                    type="submit"
+                    class="login-button"
+                >
+                    <span>Sign in</span>
+                    <span class="arrow">→</span>
+                </button>
+
+            </form>
+
+        </div>
+
+
+        <!-- Signup -->
+        <p class="signup">
+
+            New here?
+
+            <a href="{% url 'signup' %}">
+                Create an account
+            </a>
+
+        </p>
+
+    </div>
+
+
+    <script src="{% static 'accounts/js/signin.js' %}"></script>
+
 </body>
+
 </html>
+

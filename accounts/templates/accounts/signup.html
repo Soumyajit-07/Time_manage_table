@@ -1,59 +1,207 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <title>Signup</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Sign Up | Office Time Tracker</title>
+
+    <link rel="stylesheet" href="{% static 'accounts/css/signup.css' %}">
 </head>
+
 <body>
 
-    <h1>Office Time Tracker</h1>
-    <h2>Signup</h2>
+<div class="container">
 
-    <form method="POST">
-        {% csrf_token %}
+    <!-- Brand -->
+    <div class="brand">
 
-        <label>Username</label><br>
-        <input type="text" name="username"><br><br>
+        <div class="brand-icon">
+            <span>◷</span>
+        </div>
 
-        <label>Email</label><br>
-        <input type="email" name="email"><br><br>
+        <h1>Create your account</h1>
 
-        <label>Password</label><br>
-        <input type="password" id="password" name="password">
-        <button type="button" onclick="togglePassword('password', this)">Show</button>
-        <br><br>
+        <p>Start tracking your office hours</p>
 
-        <label>Confirm Password</label><br>
-        <input type="password" id="confirm_password" name="confirm_password">
-        <button type="button" onclick="togglePassword('confirm_password', this)">Show</button>
-        <br><br>
+    </div>
 
-        <button type="submit">Register</button>
-    </form>
-    <br>
-    <p>
+
+    <!-- Signup Card -->
+    <div class="signup-card">
+
+        {% if messages %}
+            {% for message in messages %}
+                <div class="message">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- Username -->
+            <div class="form-group">
+
+                <label for="username">
+                    Username
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        👤
+                    </span>
+
+                    <input
+                        id="username"
+                        type="text"
+                        name="username"
+                        placeholder="Your username"
+                        autocomplete="username"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Email -->
+            <div class="form-group">
+
+                <label for="email">
+                    Email
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        ✉
+                    </span>
+
+                    <input
+                        id="email"
+                        type="email"
+                        name="email"
+                        placeholder="you@company.com"
+                        autocomplete="email"
+                        required
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- Password -->
+            <div class="form-group">
+
+                <label for="password">
+                    Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+                    <input
+                        id="password"
+                        type="password"
+                        name="password"
+                        placeholder="••••••••"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="passwordToggle"
+                        class="password-toggle"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Confirm Password -->
+            <div class="form-group">
+
+                <label for="confirm_password">
+                    Confirm Password
+                </label>
+
+                <div class="input-wrapper">
+
+                    <span class="input-icon">
+                        🔒
+                    </span>
+
+                    <input
+                        id="confirm_password"
+                        type="password"
+                        name="confirm_password"
+                        placeholder="••••••••"
+                        autocomplete="new-password"
+                        required
+                    >
+
+                    <button
+                        type="button"
+                        id="confirmPasswordToggle"
+                        class="password-toggle"
+                        aria-label="Show password"
+                    >
+                        👁
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <!-- Register -->
+            <button
+                type="submit"
+                class="signup-button"
+            >
+                <span>Create account</span>
+                <span class="arrow">→</span>
+            </button>
+
+        </form>
+
+    </div>
+
+
+    <!-- Sign in -->
+    <p class="login-link">
+
         Already have an account?
-        <a href="{% url 'signin' %}">Signin</a>
+
+        <a href="{% url 'signin' %}">
+            Sign in
+        </a>
+
     </p>
 
-    {% if messages %}
-    {% for message in messages %}
-        <p style="color:red;">{{ message }}</p>
-    {% endfor %}
-{% endif %}
+</div>
 
-<script>
-function togglePassword(fieldId, button) {
-    const field = document.getElementById(fieldId);
 
-    if (field.type === "password") {
-        field.type = "text";
-        button.textContent = "Hide";
-    } else {
-        field.type = "password";
-        button.textContent = "Show";
-    }
-}
-</script>
+<script src="{% static 'accounts/js/signup.js' %}"></script>
 
 </body>
+
 </html>
