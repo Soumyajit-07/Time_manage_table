@@ -8,10 +8,21 @@ const STATIONS = [
 ];
 
 const punches = {
-    entry: null,
-    lunchout: null,
-    lunchin: null,
-    exit: null
+    entry: window.attendanceState.entry
+        ? new Date(window.attendanceState.entry)
+        : null,
+
+    lunchout: window.attendanceState.lunchOut
+        ? new Date(window.attendanceState.lunchOut)
+        : null,
+
+    lunchin: window.attendanceState.lunchIn
+        ? new Date(window.attendanceState.lunchIn)
+        : null,
+
+    exit: window.attendanceState.exit
+        ? new Date(window.attendanceState.exit)
+        : null
 };
 
 let workedInterval = null;
@@ -84,13 +95,67 @@ function updateTimeline(){
     document.getElementById("progress-fill").style.width =
         (currentStep*33.33)+"%";
 }
+// ----------------------------
+// Load saved attendance times
+// ----------------------------
 
+if (punches.entry) {
+    document.getElementById("entry-time").innerHTML =
+        punches.entry.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+}
+
+if (punches.lunchout) {
+    document.getElementById("lunchout-time").innerHTML =
+        punches.lunchout.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+}
+
+if (punches.lunchin) {
+    document.getElementById("lunchin-time").innerHTML =
+        punches.lunchin.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+}
+
+if (punches.exit) {
+    document.getElementById("exit-time").innerHTML =
+        punches.exit.toLocaleTimeString([], {
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit"
+        });
+}
 
 // ----------------------------
 // Buttons
 // ----------------------------
 
 let currentStep = 0;
+
+if (punches.entry) {
+    currentStep = 1;
+}
+
+if (punches.lunchout) {
+    currentStep = 2;
+}
+
+if (punches.lunchin) {
+    currentStep = 3;
+}
+
+if (punches.exit) {
+    currentStep = 4;
+}
 
 const buttons = [
 

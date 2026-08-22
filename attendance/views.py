@@ -7,8 +7,20 @@ from .models import Attendance
 
 @login_required(login_url="signin")
 def dashboard(request):
-    return render(request, "attendance/dashboard.html")
+    attendance = Attendance.objects.filter(
+        user=request.user,
+        date=timezone.localdate()
+    ).first()
 
+    context = {
+        "attendance": attendance,
+    }
+
+    return render(
+        request,
+        "attendance/dashboard.html",
+        context
+    )
 
 @login_required
 def check_in(request):

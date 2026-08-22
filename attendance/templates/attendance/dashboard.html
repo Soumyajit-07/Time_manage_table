@@ -119,7 +119,19 @@
     </footer>
 
 </div>
+<script>
+    window.attendanceState = {
+        entry: "{% if attendance and attendance.entry %}{{ attendance.entry|date:'c' }}{% endif %}",
 
-<script src="{% static 'js/dashboard.js' %}?v=2"></script>
+        lunchOut: "{% if attendance and attendance.lunch_out %}{{ attendance.lunch_out|date:'c' }}{% endif %}",
+
+        lunchIn: "{% if attendance and attendance.lunch_in %}{{ attendance.lunch_in|date:'c' }}{% endif %}",
+
+        exit: "{% if attendance and attendance.exit %}{{ attendance.exit|date:'c' }}{% endif %}"
+    };
+</script>
+
+<script src="{% static 'js/dashboard.js' %}"></script>
+<script src="{% static 'js/dashboard.js' %}"></script>
 </body>
 </html>
